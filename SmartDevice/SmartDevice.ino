@@ -8,7 +8,7 @@ RTC_Millis rtc;     // Software Real Time Clock (RTC)
 DateTime rightNow;  // used to store the current time.
 
 // SD Card - Confirm Pin
-#define SDpin 53
+#define SDpin 53 // 10 on a UNO board, 53 on a mega board
 
 void setup() {
   // put your setup code here, to run once:
@@ -28,4 +28,18 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
+  stopAndStartCar()
+
+  delay(250); // Allow time for Arduino to 'cool down'
+}
+
+/*
+ * Using the current ignition state, and input from the key (button), Detects when the key (button) is pressed and turns on the car (motor) accordingly.determines whether or not the car engine should be on
+ * and toggles it accordingly.
+ * @params none
+ * @return none
+ */
+
+void stopAndStartCar() {
+  
 }
