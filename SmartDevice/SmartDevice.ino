@@ -84,11 +84,14 @@ void stopAndStartCar() {
   int crashSensorValue = digitalRead(crashSensor);
   crashSensorValue = 1 - crashSensorValue; // Invert value, default is 0 - On, 1 - Off
 
+  if (crashSensorValue == 1 && lastCrashSensorValue == 0) {
+    motorOn = !motorOn;
+  }
+
+  lastCrashSensorValue = crashSensorValue;
   
-  
-  
-  digitalWrite(M1, crashSensorValue);
-  analogWrite(E1, 255-crashSensorValue*255);
+  digitalWrite(M1, motorOn);
+  analogWrite(E1, 255-motorOn*255);
 }
 
 /*
