@@ -46,7 +46,7 @@ void setup() {
   // SD Card initialisation
   Serial.print("Initializing SD card...");
   if (!SD.begin(SDpin)) {
-    Serial.println("initialization failed!");
+    Serial.println("Initialization failed!");
     while (1)
       ;
   }
@@ -58,7 +58,7 @@ void setup() {
 
   // Real Time Clock (RTC)
   rtc.begin(DateTime(F(__DATE__), F(__TIME__)));
-  Serial.println("initialization done.");
+  Serial.println("Initialization done.");
   logEvent("System Initialisation...");
 }
 
@@ -70,7 +70,7 @@ void loop() {
   adjustCarSeats();
 
 
-  delay(250); // Allow time for Arduino to 'cool down'
+  delay(100); // Allow time for Arduino to 'cool down'
 }
 
 /*
@@ -84,13 +84,15 @@ void stopAndStartCar() {
   int crashSensorValue = digitalRead(crashSensor);
   crashSensorValue = 1 - crashSensorValue; // Invert value, default is 0 - On, 1 - Off
 
-  if (crashSensorValue == 1 && lastCrashSensorValue == 0) {
+  if (crashSensorValue == 1 && lastCrashSensorValue == 0) { // Catch the sensor value on the rising edge
     motorOn = !motorOn;
   }
 
+//  logEvent(motorOn ? "Motor has been turned on" : "Motor has been turned off");
+
   lastCrashSensorValue = crashSensorValue;
   
-  digitalWrite(M1, motorOn);
+  digitalWrite(M1, HIGH);
   analogWrite(E1, 255-motorOn*255);
 }
 
