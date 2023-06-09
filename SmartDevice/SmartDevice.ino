@@ -33,7 +33,6 @@ Servo myservo;
 #define SDpin 10 // 10 on a UNO board, 53 on a mega board
 
 // Control Variables
-int lastCrashSensorValue = 0;
 boolean motorOn = false;
 
 void setup() {
@@ -81,16 +80,13 @@ void loop() {
 */
 
 void stopAndStartCar() {
-  int crashSensorValue = digitalRead(crashSensor);
-  crashSensorValue = 1 - crashSensorValue; // Invert value, default is 0 - On, 1 - Off
+  int crashSensorValue = pulseIn(crashSensor, HIGH);
 
-  if (crashSensorValue == 1 && lastCrashSensorValue == 0) { // Catch the sensor value on the rising edge
+  if (crashSensorValue > 0) { // Catch the sensor value on the rising edge
     motorOn = !motorOn;
   }
 
 //  logEvent(motorOn ? "Motor has been turned on" : "Motor has been turned off");
-
-  lastCrashSensorValue = crashSensorValue;
   
   digitalWrite(M1, HIGH);
   analogWrite(E1, 255-motorOn*255);
