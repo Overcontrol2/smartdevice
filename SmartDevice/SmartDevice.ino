@@ -59,7 +59,7 @@ void setup() {
   // Real Time Clock (RTC)
   rtc.begin(DateTime(F(__DATE__), F(__TIME__)));
   Serial.println("Initialization done.");
-  logEvent("System Initialisation...");
+  logEvent("System initialisation...");
 }
 
 void loop() {
