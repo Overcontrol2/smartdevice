@@ -1,6 +1,7 @@
 // SD Card Module
 #include <SPI.h>
 #include <SD.h>
+const int SDpin = 10; // 10 on a UNO board, 53 on a mega board
 
 // Real Time Clock (RTC)
 #include "RTClib.h"
@@ -9,31 +10,30 @@ DateTime rightNow;  // used to store the current time.
 
 // IR Remote
 #include <IRremote.h>
-#define IR_INPUT_PIN    2
+const int IR_INPUT_PIN = 2;
 IRrecv irrecv(IR_INPUT_PIN);
 decode_results results;
 
 // Traffic Lights - LED Outputs
-#define ledRed A0
-#define ledYellow A1
-#define ledGreen A2
+const int ledRed = A0;
+const int ledYellow = A1;
+const int ledGreen = A2;
 
 // Crash Sensor / Button
-#define crashSensor 2
+const int crashSensor = 2;
 
 // DC Motor
-int E1 = 6;
-int M1 = 7;
+
+const int E1 = 6;
+const int M1 = 7;
 
 // Servo
 #include <Servo.h>
 Servo myservo;
 
-// SD Card - Confirm Pin
-#define SDpin 10 // 10 on a UNO board, 53 on a mega board
 
 // Control Variables
-boolean motorOn = false;
+bool motorOn = false;
 
 void setup() {
   // put your setup code here, to run once:
@@ -43,12 +43,12 @@ void setup() {
   }
 
   // SD Card initialisation
-  Serial.print("Initializing SD card...");
-  if (!SD.begin(SDpin)) {
-    Serial.println("Initialization failed!");
-    while (1)
-      ;
-  }
+//  Serial.print("Initializing SD card...");
+//  if (!SD.begin(SDpin)) {
+//    Serial.println("Initialization failed!");
+//    while (1)
+//      ;
+//  }
 
   // Crash Sensor / Button
   pinMode(crashSensor, INPUT);
