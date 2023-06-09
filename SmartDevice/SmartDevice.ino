@@ -53,6 +53,7 @@ void setup() {
   // Crash Sensor / Button
   pinMode(crashSensor, INPUT);
 
+  // DC Motor
   pinMode(M1, OUTPUT);
 
   // Real Time Clock (RTC)
@@ -125,7 +126,7 @@ boolean sonarWithinThreshold() {
 */
 
 void toggleBuzzerAndLightsIfOnLine() {
-
+  
 }
 
 /*
