@@ -5,7 +5,7 @@ void logEvent(String dataToLog) {
   // Get the updated/current time
   DateTime rightNow = rtc.now();
 
-//  // Open the log file
+//  // Open the log file for the SD card
 //  File logFile = SD.open("events.csv", FILE_WRITE);
 //  if (!logFile) {
 //    Serial.print("Couldn't create log file");
@@ -30,6 +30,8 @@ void logEvent(String dataToLog) {
 //  // End the line with a return character.
 //  logFile.println();
 //  logFile.close();
+
+// Serial Monitor
   Serial.print("Event Logged: ");
   Serial.print(rightNow.year(), DEC);
   Serial.print(",");
